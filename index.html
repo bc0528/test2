@@ -14,7 +14,9 @@ var app = new Vue({
    el: "#app",
    template: "#main",
    data() {
-      return {};
+      return {
+         carouselIndex: 0
+      };
    }
 });
 
@@ -27,7 +29,7 @@ var app = new Vue({
 
 <template id="main">
 <v-ons-page>
-<v-ons-carousel>
+<v-ons-carousel :index.sync="carouselIndex">
 <v-ons-carousel-item><div>One</div>
 </v-ons-carousel-item>
 <v-ons-carousel-item><div>Two</div>
