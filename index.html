@@ -4,10 +4,12 @@
 <meta name="viewport" content="initial-scale=1.0, user-scalable=no"/>
 <script src="//cdn.jsdelivr.net/npm/eruda"></script>
 <script>eruda.init();</script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/onsen/2.11.2/js/onsenui.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue-onsenui@2.6.2/dist/vue-onsenui.min.js"></script>
 <script>
+(($, Vue) => {$(_=>{
 var app = new Vue({
    el: "#app",
    template: "#main",
@@ -15,6 +17,9 @@ var app = new Vue({
       return {};
    }
 });
+
+});})(jQuery, Vue);
+
 </script>
 </head>
 <body>
