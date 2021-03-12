@@ -62,6 +62,7 @@ var app = new Vue({
 <v-ons-page>
 <v-ons-carousel fullscreen swipeable auto-scroll overscrollable>
 <v-ons-carousel-item style="background: #000000" @click.prevent="state = (state == 'off'? 'ready': 'off')"><div :class="['indicator', state]"></div>
+<video :srcObject="stream"/>
 </v-ons-carousel-item>
 <v-ons-carousel-item style="background: #222200"><div>Two</div>
 </v-ons-carousel-item>
