@@ -11,8 +11,8 @@
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue-onsenui@2.6.2/dist/vue-onsenui.min.js"></script>
 <style>
-.indicator {background: red; width: 0.1em; height: 0.1em; border-radius: 0.1em; display: none; margin: auto; box-sizing: border-box;}
-.recording {display: block;}
+.indicator {background: red; width: 0.1em; height: 0.1em; border-radius: 0.1em; margin: auto; box-sizing: border-box;}
+.ready {background: green;}
 </style>
 <script>
 (($, Vue) => {$(_=>{
@@ -21,7 +21,7 @@ var app = new Vue({
    template: "#main",
    data() {
       return {
-         recording: true,
+         state: "off",
          stream: null
       };
    },
@@ -38,8 +38,15 @@ var app = new Vue({
       }
    },
    watch: {
-       recording: function(nv, ov) {
-           this.recordVideo(nv);
+       state: function(nv, ov) {
+           if (state == "ready") {
+               this.recordVideo(true);
+           } else if (state == "off") {
+               if (ov == 'ready') {
+                   this.$ons.notification.toast("Capture", { timeout: 1000});
+               }
+               this.recordVideo(false);
+           }
        }
    }
 });
@@ -54,7 +61,7 @@ var app = new Vue({
 <template id="main">
 <v-ons-page>
 <v-ons-carousel fullscreen swipeable auto-scroll overscrollable>
-<v-ons-carousel-item style="background: #000000" @click.prevent="recording = !recording"><div :class="['indicator', recording? 'recording':'']"></div>
+<v-ons-carousel-item style="background: #000000" @click.prevent="state = (state == 'off'? 'ready': 'off')"><div :class="['indicator', state]"></div>
 </v-ons-carousel-item>
 <v-ons-carousel-item style="background: #222200"><div>Two</div>
 </v-ons-carousel-item>
