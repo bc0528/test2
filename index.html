@@ -21,8 +21,26 @@ var app = new Vue({
    template: "#main",
    data() {
       return {
-         recording: true
+         recording: true,
+         stream: null
       };
+   },
+   methods: {
+      recordVideo: async function(onoff) {
+          if (onoff) {
+              this.stream = await navigator.mediaDevices.getUserMedia({video: true});
+          } else if (this.stream) {
+              this.stream.getTracks().forEach((track)=>{
+                  track.stop();
+              });
+              this.stream = null;
+          }
+      }
+   }
+   watch: {
+       recording: function(nv, ov) {
+           recordVideo(nv);
+       }
    }
 });
 
