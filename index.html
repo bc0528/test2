@@ -48,6 +48,7 @@ var app = new Vue({
            if (this.state == "ready") {
                this.recordVideo(true);
            } else if (this.state == "off") {
+               try {
                if (ov == 'ready') {
                    var canvas = $("canvas", this.$el)[0];
                    var context = canvas.getContext("2d");
@@ -55,7 +56,9 @@ var app = new Vue({
                    context.drawImage(v, 0, 0, v.width, v.height);
                    this.$ons.notification.toast("Capture", { timeout: 1000});
                }
-               this.recordVideo(false);
+               } finally {
+                   this.recordVideo(false);
+               }
            }
        }
    }
