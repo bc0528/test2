@@ -29,10 +29,14 @@ var app = new Vue({
       recordVideo: async function(onoff) {
           if (onoff) {
               this.stream = await navigator.mediaDevices.getUserMedia({video: true});
+              var v = $("video", this.el)[0];
+              v.play();
           } else if (this.stream) {
               this.stream.getTracks().forEach((track)=>{
                   track.stop();
               });
+              var v = $("video", this.el)[0];
+              v.stop();
               this.stream = null;
           }
       }
@@ -62,7 +66,7 @@ var app = new Vue({
 <v-ons-page>
 <v-ons-carousel fullscreen swipeable auto-scroll overscrollable>
 <v-ons-carousel-item style="background: #000000" @click.prevent="state = (state == 'off'? 'ready': 'off')"><div :class="['indicator', state]"></div>
-<video :srcObject="stream" style="border:2px solid yellow"/>
+<video style="border:2px solid yellow"/>
 </v-ons-carousel-item>
 <v-ons-carousel-item style="background: #222200"><div>Two</div>
 </v-ons-carousel-item>
