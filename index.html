@@ -38,6 +38,7 @@ var app = new Vue({
               });
               var v = $("video", this.el)[0];
               v.pause();
+              v.srcObject = null;
               this.stream = null;
           }
       }
