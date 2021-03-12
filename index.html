@@ -36,7 +36,7 @@ var app = new Vue({
               this.stream.getTracks().forEach((track)=>{
                   track.stop();
               });
-              var v = $("video", this.el)[0];
+              var v = $("video", this.$el)[0];
               v.pause();
               v.srcObject = null;
               this.stream = null;
@@ -49,6 +49,10 @@ var app = new Vue({
                this.recordVideo(true);
            } else if (this.state == "off") {
                if (ov == 'ready') {
+                   var canvas = $("canvas", this.$el)[0];
+                   var context = canvas.getContext("2d");
+                   var v = $("video", this.$el)[0];
+                   context.drawImage(v, 0, 0, v.width, v.height);
                    this.$ons.notification.toast("Capture", { timeout: 1000});
                }
                this.recordVideo(false);
@@ -69,6 +73,7 @@ var app = new Vue({
 <v-ons-carousel fullscreen swipeable auto-scroll overscrollable>
 <v-ons-carousel-item style="background: #000000" @click.prevent="state = (state == 'off'? 'ready': 'off')"><div :class="['indicator', state]"></div>
 <video style="border:2px solid yellow"/>
+<canvas style="border:2px solid red"></canvas>
 </v-ons-carousel-item>
 <v-ons-carousel-item style="background: #222200"><div>Two</div>
 </v-ons-carousel-item>
