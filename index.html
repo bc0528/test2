@@ -37,7 +37,7 @@ var app = new Vue({
                   track.stop();
               });
               var v = $("video", this.el)[0];
-              v.stop();
+              v.pause();
               this.stream = null;
           }
       }
