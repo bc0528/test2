@@ -30,6 +30,7 @@ var app = new Vue({
           if (onoff) {
               this.stream = await navigator.mediaDevices.getUserMedia({video: true});
               var v = $("video", this.el)[0];
+              v.srcObject = this.stream;
               v.play();
           } else if (this.stream) {
               this.stream.getTracks().forEach((track)=>{
