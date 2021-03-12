@@ -26,19 +26,24 @@ var app = new Vue({
    },
    methods: {
       recordVideo: async function(onoff) {
+          var v = $("video", this.el)[0];
           if (onoff) {
+              if (!v.srcObject) {
               var stream = await navigator.mediaDevices.getUserMedia({video: {facingMode: "environment"}});
-              var v = $("video", this.el)[0];
+  
               v.srcObject = stream;
               v.play();
+              }
           } else {
  
               var v = $("video", this.$el)[0];
+              if (v.srcObject) {
                v.srcObject.getTracks().forEach((track)=>{
                   track.stop();
               });
               //v.pause();
               v.srcObject = null;
+              }
           }
       }
    },
