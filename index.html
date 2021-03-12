@@ -10,6 +10,10 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/onsen/2.11.2/js/onsenui.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue-onsenui@2.6.2/dist/vue-onsenui.min.js"></script>
+<style>
+.indicator {background: red; width: 0.1em; height: 0.1em; border-radius: 0.1em; display: none; margin: auto;}
+.recording {display: block;}
+</style>
 <script>
 (($, Vue) => {$(_=>{
 var app = new Vue({
@@ -17,7 +21,7 @@ var app = new Vue({
    template: "#main",
    data() {
       return {
-         
+         recording: true;
       };
    }
 });
@@ -32,7 +36,7 @@ var app = new Vue({
 <template id="main">
 <v-ons-page>
 <v-ons-carousel fullscreen swipeable auto-scroll overscrollable>
-<v-ons-carousel-item style="background: grey"><div>One</div>
+<v-ons-carousel-item style="background: grey"><div :class="['indicator', recording? 'recording':'']"
 </v-ons-carousel-item>
 <v-ons-carousel-item style="background: green"><div>Two</div>
 </v-ons-carousel-item>
