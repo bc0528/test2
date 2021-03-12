@@ -39,9 +39,9 @@ var app = new Vue({
    },
    watch: {
        state: function(nv, ov) {
-           if (state == "ready") {
+           if (this.state == "ready") {
                this.recordVideo(true);
-           } else if (state == "off") {
+           } else if (this.state == "off") {
                if (ov == 'ready') {
                    this.$ons.notification.toast("Capture", { timeout: 1000});
                }
