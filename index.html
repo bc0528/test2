@@ -90,7 +90,7 @@ var app = new Vue({
 </v-ons-carousel-item>
 <v-ons-carousel-item style="background: #222200">
    <div v-for="(image, index) in images">
-      <img src="{{image}}" alt="image_{{index}}"/>
+      <img :src="image" :alt="'image_' + index"/>
    </div>
 </v-ons-carousel-item>
 </v-ons-carousel> 
