@@ -68,9 +68,10 @@ var app = new Vue({
                    //canvas.height = v.height;
                    context.clearRect(0, 0, canvas.width, canvas.height);
                    context.drawImage(v, 0, 0, canvas.width, canvas.height);
-                   canvas.toBlob(blob=>{
-                      this.images.push(URL.createObjectURL(blob));
-                   });
+                   //canvas.toBlob(blob=>{
+                   //   this.images.push(URL.createObjectURL(blob));
+                   //});
+                   this.images.push(canvas.toDataURL("image/png"));
                    this.$ons.notification.toast("Capture", { timeout: 1000});
                }
                } finally {
