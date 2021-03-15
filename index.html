@@ -34,7 +34,7 @@ var app = new Vue({
           var v = $("video", this.el)[0];
           if (onoff) {
               if (!v.srcObject) {
-              var stream = await navigator.mediaDevices.getUserMedia({video: {facingMode: "environment", width: {ideal: 2000}, height: {ideal: 2000}});
+              var stream = await navigator.mediaDevices.getUserMedia({video: {facingMode: "environment", width: {ideal: 2000}, height: {ideal: 2000}}});
   
               v.srcObject = stream;
               await v.play();
