@@ -35,7 +35,7 @@ var app = new Vue({
           if (onoff) {
               if (!v.srcObject) {
               var ratio = window.devicePixelRatio;
-              var constraints = {video: {facingMode: "environment", width: {ideal: window.outerWidth * ratio}, height: {ideal: window.outerHeight * ratio}}};
+              var constraints = {video: {facingMode: "environment", width: {ideal: Math.floor(window.outerWidth * ratio)}, height: {ideal: Math.floor(window.outerHeight * ratio)}}};
               this.$ons.notification.toast(`Constraints: ${JSON.stringify(constraints)}`, {timeout:2000});
               var stream = await navigator.mediaDevices.getUserMedia(constraints);
   
