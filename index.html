@@ -22,7 +22,8 @@ var app = new Vue({
    template: "#main",
    data() {
       return {
-         state: "off"
+         state: "off",
+         images: []
       };
    },
    methods: {
@@ -60,6 +61,9 @@ var app = new Vue({
                    var v = $("video", this.$el)[0];
                    context.clearRect(0, 0, canvas.width, canvas.height);
                    context.drawImage(v, 0, 0, canvas.width, canvas.height);
+                   canvas.toBlob(blob=>{
+                      this.images.push(URL.createObjectURL(blob));
+                   });
                    this.$ons.notification.toast("Capture", { timeout: 1000});
                }
                } finally {
@@ -84,7 +88,10 @@ var app = new Vue({
 <video style="border:2px solid yellow"></video>
 <canvas style="border:2px solid red"></canvas>
 </v-ons-carousel-item>
-<v-ons-carousel-item style="background: #222200"><div>Two</div>
+<v-ons-carousel-item style="background: #222200">
+   <div v-for="(image, index) in images">
+      <img src="{{image}}" alt="image_{{index}}"/>
+   </div>
 </v-ons-carousel-item>
 </v-ons-carousel> 
 
