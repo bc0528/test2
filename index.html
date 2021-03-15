@@ -15,6 +15,7 @@
 .ready {background: green;}
 video {visibility: hidden;}
 canvas {visibility: hidden;}
+.scroller {display: block; height:100%; overflow: scroll; -webkit-overflow-scrolling: touch; -ms-overflow-style: none; -ms-scroll-snap-type: mandatory;}
 </style>
 <script>
 (($, Vue) => {$(_=>{
@@ -95,8 +96,10 @@ var app = new Vue({
 <canvas style="border:2px solid red"></canvas>
 </v-ons-carousel-item>
 <v-ons-carousel-item style="background: #222200">
+   <div class="scroller">
    <div v-for="(image, index) in images">
       <img :src="image" :alt="'image_' + index"/>
+   </div>
    </div>
 </v-ons-carousel-item>
 </v-ons-carousel> 
