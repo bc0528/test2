@@ -71,7 +71,7 @@ var app = new Vue({
                    //canvas.toBlob(blob=>{
                    //   this.images.push(URL.createObjectURL(blob));
                    //});
-                   this.images.push(canvas.toDataURL("image/png"));
+                   this.images.push(canvas.toDataURL("image/png", 1.0));
                    this.$ons.notification.toast("Capture", { timeout: 1000});
                }
                } finally {
