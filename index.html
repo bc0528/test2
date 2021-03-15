@@ -36,6 +36,9 @@ var app = new Vue({
   
               v.srcObject = stream;
               await v.play();
+              var canvas = $("canvas", this.$el)[0];
+              canvas.width = v.width;
+              canvas.height = v.height;
               }
           } else {
  
