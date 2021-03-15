@@ -16,6 +16,7 @@
 video {visibility: hidden;}
 canvas {visibility: hidden;}
 .scroller {display: block; height:100%; overflow: scroll; -webkit-overflow-scrolling: touch; -ms-overflow-style: none; -ms-scroll-snap-type: mandatory;}
+.result img {max-width: 100%;}
 </style>
 <script>
 (($, Vue) => {$(_=>{
@@ -38,8 +39,8 @@ var app = new Vue({
               v.srcObject = stream;
               await v.play();
               var canvas = $("canvas", this.$el)[0];
-              canvas.width = v.videoWidth;
-              canvas.height = v.videoHeight;
+              canvas.width = v.videoWidth * 2;
+              canvas.height = v.videoHeight * 2;
               }
           } else {
  
@@ -64,13 +65,11 @@ var app = new Vue({
                    var canvas = $("canvas", this.$el)[0];
                    var context = canvas.getContext("2d");
                    var v = $("video", this.$el)[0];
-                   //canvas.width = v.width;
-                   //canvas.height = v.height;
                    context.clearRect(0, 0, canvas.width, canvas.height);
                    context.drawImage(v, 0, 0, canvas.width, canvas.height);
-                   canvas.toBlob(blob=>{
-                      this.images.push(URL.createObjectURL(blob));
-                   });
+                   //canvas.toBlob(blob=>{
+                   //   this.images.push(URL.createObjectURL(blob));
+                   //});
                    this.images.push(canvas.toDataURL("image/png", 1.0));
                    this.$ons.notification.toast("Capture", { timeout: 1000});
                }
@@ -97,7 +96,7 @@ var app = new Vue({
 <canvas style="border:2px solid red"></canvas>
 </v-ons-carousel-item>
 <v-ons-carousel-item style="background: #222200">
-   <div class="scroller">
+   <div class="scroller result">
    <div v-for="(image, index) in images">
       <img :src="image" :alt="'image_' + index"/>
    </div>
