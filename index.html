@@ -67,10 +67,10 @@ var app = new Vue({
                    var v = $("video", this.$el)[0];
                    context.clearRect(0, 0, canvas.width, canvas.height);
                    context.drawImage(v, 0, 0, canvas.width, canvas.height);
-                   //canvas.toBlob(blob=>{
-                   //   this.images.push(URL.createObjectURL(blob));
-                   //});
-                   this.images.push(canvas.toDataURL("image/png", 1.0));
+                   canvas.toBlob(blob=>{
+                      this.images.push(URL.createObjectURL(blob));
+                   });
+                   //this.images.push(canvas.toDataURL("image/png", 1.0));
                    this.$ons.notification.toast("Capture", { timeout: 1000});
                }
                } finally {
