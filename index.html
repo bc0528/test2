@@ -14,6 +14,7 @@
 .indicator {background: red; width: 0.1em; height: 0.1em; border-radius: 0.1em; margin: auto; box-sizing: border-box;}
 .ready {background: green;}
 video {visibility: hidden;}
+canvas {visibility: hidden;}
 </style>
 <script>
 (($, Vue) => {$(_=>{
@@ -59,6 +60,8 @@ var app = new Vue({
                    var canvas = $("canvas", this.$el)[0];
                    var context = canvas.getContext("2d");
                    var v = $("video", this.$el)[0];
+                   canvas.width = v.width;
+                   canvas.height = v.height;
                    context.clearRect(0, 0, canvas.width, canvas.height);
                    context.drawImage(v, 0, 0, canvas.width, canvas.height);
                    canvas.toBlob(blob=>{
