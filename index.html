@@ -34,8 +34,8 @@ var app = new Vue({
           var v = $("video", this.el)[0];
           if (onoff) {
               if (!v.srcObject) {
-              var ratio = window.devicePixelRatio;
-              var constraints = {video: {facingMode: "environment", width: {ideal: Math.floor(window.outerWidth * ratio)}, height: {ideal: Math.floor(window.outerHeight * ratio)}, aspectRatio: /.*landscape.*/.test(screen.orientation.type)? {min: 1.0}:{max:1.0}}};
+              var ratio = 1;//window.devicePixelRatio;
+              var constraints = {video: {facingMode: "environment", width: {ideal: Math.floor(screen.width * ratio)}, height: {ideal: Math.floor(screen.height * ratio)}, aspectRatio: /.*landscape.*/.test(screen.orientation.type)? {min: 1.0}:{max:1.0}}};
               console.log(`Constraints: ${JSON.stringify(constraints)}`);
               var stream = await navigator.mediaDevices.getUserMedia(constraints);
   
