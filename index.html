@@ -42,6 +42,7 @@ var app = new Vue({
               v.srcObject = stream;
               await v.play();
               var canvas = $("canvas", this.$el)[0];
+              console.log(`Video size: ${v.videoWidth} x ${v.videoHeight}`);
               canvas.width = v.videoWidth * 1;
               canvas.height = v.videoHeight * 1;
               }
