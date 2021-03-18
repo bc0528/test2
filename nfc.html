@@ -2,7 +2,12 @@
 <body>
 <button id="scanButton">Scan</button>
 <button id="writeButton">Write</button>
+<div id="output">
+</div>
 <script>
+log = m => {
+   output.innerText = `${output.innerText)\n${m}`;
+};
 scanButton.addEventListener("click", async () => {
   log("User clicked scan button");
 
@@ -11,8 +16,9 @@ scanButton.addEventListener("click", async () => {
     await ndef.scan();
     log("> Scan started");
 
-    ndef.addEventListener("readingerror", () => {
+    ndef.addEventListener("readingerror", (e) => {
       log("Argh! Cannot read data from the NFC tag. Try another one?");
+      log(JSON.stringify(e));
     });
 
     ndef.addEventListener("reading", ({ message, serialNumber }) => {
