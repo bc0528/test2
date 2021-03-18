@@ -5,12 +5,13 @@
 <body>
 <button id="scanButton">Scan</button>
 <button id="writeButton">Write</button>
-<div id="output">
+<div id="output" style="border: 1px solid #000000;">
 </div>
 <script>
-log = m => {
+window.log = m => {
    output.innerText = `${output.innerText)\n${m}`;
 };
+log("Loaded");
 scanButton.addEventListener("click", async () => {
   log("User clicked scan button");
 
